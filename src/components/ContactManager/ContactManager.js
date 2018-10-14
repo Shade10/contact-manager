@@ -34,28 +34,28 @@ class ContactManager extends Component {
     });
   };
 
-  editContact = (name, surname) => {
-    return (
-      <form className="ContactManager" onSubmit={this.chengeContact}>
-        <p>{this.state.error && <span>{this.state.error.message}</span>}</p>
-        <input
-          value={this.state.name}
-          onChange={this.chengeContact}
-          placeholder="Name"
-        />
-        <input
-          value={this.state.surname}
-          onChange={this.chengeContact}
-          placeholder="Surname"
-        />
-        <button>Add Contact</button>
-      </form>
-    );
-
-    // this.setState({
-    //   contacts: this.this.setState
-    // })
+  editContact = (name, surname, contactId) => {
+    this.setState({
+      contacts: this.state.contacts.filter(contact => contactId !== contact.id).map((name, surname) => {
+        return(
+          <form>
+            <input
+            value={name}
+            onChange={this.chengeContact(name)}
+            placeholder="Name"
+          />
+          <input
+            value={this.state.surname}
+            onChange={this.chengeContact(surname)}
+            placeholder="Surname"
+          />
+          </form>
+        )
+      } )
+    });
   };
+
+
   componentDidUpdate() {
     localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
   }
@@ -81,7 +81,7 @@ class ContactManager extends Component {
               </button>
               <button
                 className="contact-button"
-                onClick={() => <AddContactForm addContactFunction={this.chengeContact} />}
+                onClick={() => this.this.editContact(contact.name, contact.surname, contact.id)}
               >
                 Edit
               </button>

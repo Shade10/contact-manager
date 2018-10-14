@@ -12,11 +12,10 @@ class App extends Component {
         <div className="App">
           <ul>
             <li><NavLink exact to="/">Home</NavLink></li>
-            <li><NavLink to="/ContactManager">Contact Form</NavLink></li>
           </ul>
 
-          <Route exact path="/" component={() => <h1>Hello</h1>} />
-          <Route path="/ContactManager" component={ContactManager} />
+          <Route exact path="/" component={ContactManager}/>
+          {/* <Route path="/ContactManager" component={ContactManager} /> */}
         </div>
       </Router>
     );
